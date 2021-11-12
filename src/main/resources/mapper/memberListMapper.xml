@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ 
+<mapper namespace="org.bbs.mapper.MemberListMapper">
+
+	<insert id="memberInsert"> <!-- java단에 interface로 잡아놓은 메소드의 명 -->
+	
+		insert into join_mem(mem_name, mem_tel, mem_addr, mem_age, mem_gender) 
+		values(#{mem_name}, #{mem_tel}, #{mem_addr}, #{mem_age}, #{mem_gender})
+		<!-- insert 시, 들어올 값을 #{}로 지정 -->
+	
+	</insert>
+	
+	
+	<select id="memberListAll" resultType="org.bbs.model.MemberListDTO">
+		select * from join_mem
+	</select>
+	
+	<select id="memberAccount" resultType="org.bbs.model.MemberListDTO">
+		select * from join_mem where mem_no = #{mem_no}
+	</select>
+	
+	<delete id="memberDelete">
+		delete from join_mem where mem_no = #{mem_no}
+	</delete>
+
+	<update id="memberUpdate">
+		update join_mem set mem_name = #{mem_name}, mem_tel = #{mem_tel}, mem_addr = #{mem_addr},
+		mem_age = #{mem_age}, mem_gender = #{mem_gender} where mem_no = #{mem_no};
+	</update>
+
+
+</mapper>
